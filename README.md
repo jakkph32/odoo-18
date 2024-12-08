@@ -134,3 +134,23 @@ server {
 
 <img src="screenshots/odoo-17-product-form.png" width="100%">
 # odoo-18
+
+## How To Install Fonts On Docker Container
+
+## Installing Fonts
+
+```bash
+apt install fonts-thai-tlwg -y
+```
+
+## Using Docker CLI Commands
+
+```bash
+docker cp <path to font files> <container name>:<path to container>
+```
+
+For example:
+
+```bash
+docker cp /usr/share/fonts odoo-17:/usr/share/fonts
+```
