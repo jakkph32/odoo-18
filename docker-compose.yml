@@ -2,7 +2,7 @@
 services:
   db:
     image: postgres:16
-    container_name: odoo-db
+    container_name: db
     user: root
     environment:
       - POSTGRES_USER=odoo18
@@ -14,7 +14,7 @@ services:
 
   odoo:
     image: odoo:18
-    container_name: odoo-18
+    container_name: odoo
     user: root
     depends_on:
       - db
