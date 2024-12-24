@@ -12,7 +12,7 @@ services:
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  odoo18:
+  odoo:
     image: odoo:18
     container_name: odoo-18
     user: root
