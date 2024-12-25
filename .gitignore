@@ -1,5 +1,1 @@
-postgresql/
-etc/addons
-etc/filestore
-etc/sessions
-etc/odoo-server.log
+.env

@@ -1,38 +1,21 @@
----
-services:
-  db:
-    image: postgres:16
-    container_name: db
-    user: root
-    environment:
-      - POSTGRES_USER=odoo18
-      - POSTGRES_PASSWORD=odoo18@2030
-      - POSTGRES_DB=postgres
-    restart: always
-    volumes:
-        - ./postgresql:/var/lib/postgresql/data
+version: "3"
 
+services:
   odoo:
-    image: odoo:18
+    image: jakkph32/mts-odoo:latest
     container_name: odoo
     user: root
-    depends_on:
-      - db
-    ports:
-      - "10018:8069"
-      - "20018:8072" # live chat
-    tty: true
-    command: --
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     environment:
-      - HOST=db
-      - USER=odoo18
-      - PASSWORD=odoo18@2030
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRESS_DB=${PGDATABASE}
+    ports:
+      - 8069:8069
+      - 8072:8072
     volumes:
-      #- /etc/timezone:/etc/timezone:ro
-      #- /etc/localtime:/etc/localtime:ro
-      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
-      - ./etc:/etc/odoo
-      - ./install_fonts.sh:/install_fonts.sh
-    restart: always
-    
